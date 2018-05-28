@@ -13,13 +13,16 @@ import android.view.ViewGroup;
 import com.example.weiliu.nfn.R;
 import com.example.weiliu.nfn.adapter.TaskAdapter;
 import com.example.weiliu.nfn.bean.TaskBean;
+import com.example.weiliu.nfn.presenter.TaskPresenter;
+import com.example.weiliu.nfn.view.TaskView;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class TaskFragment extends Fragment {
+public class TaskFragment extends Fragment implements TaskView{
 
     private RecyclerView taskRecyclerView;
+    private TaskPresenter taskPresenter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -31,22 +34,23 @@ public class TaskFragment extends Fragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         initView(view);
-
+        taskPresenter = new TaskPresenter(getContext(),TaskFragment.this);
+        taskPresenter.loadTaskList();
         super.onViewCreated(view, savedInstanceState);
     }
 
     private void initView(View view) {
         taskRecyclerView = view.findViewById(R.id.rv_task);
-        TaskAdapter adapter = new TaskAdapter();
-        taskRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-
-        taskRecyclerView.setAdapter(adapter);
-
-        getData();
 
     }
 
-    private void getData() {
-        
+    @Override
+    public void showTaskList(List list) {
+
+        TaskAdapter adapter = new TaskAdapter(getContext(),list);
+
+        taskRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+
+        taskRecyclerView.setAdapter(adapter);
     }
 }
