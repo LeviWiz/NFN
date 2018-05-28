@@ -4,18 +4,23 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 
 import com.example.weiliu.nfn.fragment.MineFragment;
 import com.example.weiliu.nfn.fragment.RewardsFragment;
 import com.example.weiliu.nfn.fragment.TaskFragment;
-import com.example.weiliu.nfn.utils.SharePreferenceUtil;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
+    private static final String TAG = MainActivity.class.getSimpleName();
+
     Fragment currentFragment;
-    private Fragment[] fragments;
+    private List<Fragment> fragments;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,13 +29,12 @@ public class MainActivity extends AppCompatActivity {
 
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
-
-        fragments = new Fragment[3];
-        fragments[0] = new TaskFragment();
-        fragments[1] = new RewardsFragment();
-        fragments[2] = new MineFragment();
-
-        switchFragment(SharePreferenceUtil.getNavigationId(this));
+        
+        fragments = new ArrayList<Fragment>(3);
+        fragments.add(new TaskFragment());
+        fragments.add(new RewardsFragment());
+        fragments.add(new MineFragment());
+        switchFragment(0);
     }
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
@@ -54,27 +58,37 @@ public class MainActivity extends AppCompatActivity {
     };
 
     private void switchFragment(int id) {
-        SharePreferenceUtil.putNavigationId(MainActivity.this, id);
         Fragment fragment = getFragmentById(id);
-        if (currentFragment == null || !currentFragment.getClass().getSimpleName().equals(fragment.getClass().getSimpleName())) {
-            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, fragment).commit();
-        }
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        if (currentFragment == null) {
+            transaction.add(R.id.fragment_container, fragment).commit();
+            currentFragment = fragment;
+        } else if (!currentFragment.getClass().getSimpleName().equals(fragment.getClass().getSimpleName())) {
+            transaction.hide(currentFragment);
+            if (!fragment.isAdded()) {
+                transaction.add(R.id.fragment_container, fragment).commit();
+            } else {
+                transaction.show(fragment).commit();
+            }
+            currentFragment = fragment;
+        } else
+            return;
     }
 
     private Fragment getFragmentById(int id) {
         Fragment fragment;
         switch (id) {
             case R.id.navigation_home:
-                fragment = fragments[0];
+                fragment = fragments.get(0);
                 break;
             case R.id.navigation_rewards:
-                fragment = fragments[1];
+                fragment = fragments.get(1);
                 break;
             case R.id.navigation_mine:
-                fragment = fragments[2];
+                fragment = fragments.get(2);
                 break;
             default:
-                fragment = fragments[0];
+                fragment = fragments.get(0);
                 break;
         }
         return fragment;
