@@ -2,7 +2,7 @@ package com.example.weiliu.nfn.bean;
 
 /**
  * Created by wei.liu on 2018/5/28.
- * 第一版只有每日单次任务
+ * 第一版只有单次任务
  */
 public class TaskBean {
 
