@@ -14,16 +14,4 @@ public class SharePreferenceUtil {
 
     private SharePreferenceUtil() {
     }
-
-    public static int getNavigationId(Context context) {
-        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
-        return sharedPreferences.getInt(context.getString(R.string.nevigation_id), R.id.navigation_home);
-    }
-
-    public static void putNavigationId(Context context, int t) {
-        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putInt(context.getString(R.string.nevigation_id), t);
-        editor.commit();
-    }
 }

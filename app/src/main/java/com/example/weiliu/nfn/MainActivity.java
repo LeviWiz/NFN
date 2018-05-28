@@ -7,6 +7,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.example.weiliu.nfn.fragment.MineFragment;
 import com.example.weiliu.nfn.fragment.RewardsFragment;
@@ -19,8 +20,9 @@ public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = MainActivity.class.getSimpleName();
 
-    Fragment currentFragment;
+    private Fragment currentFragment;
     private List<Fragment> fragments;
+    private long exitTime = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
 
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
-        
+
         fragments = new ArrayList<Fragment>(3);
         fragments.add(new TaskFragment());
         fragments.add(new RewardsFragment());
@@ -92,5 +94,15 @@ public class MainActivity extends AppCompatActivity {
                 break;
         }
         return fragment;
+    }
+
+    @Override
+    public void onBackPressed() {
+        if ((System.currentTimeMillis() - exitTime) > 2000) {
+            Toast.makeText(MainActivity.this, "再点一次，退出", Toast.LENGTH_SHORT).show();
+            exitTime = System.currentTimeMillis();
+        } else {
+            super.onBackPressed();
+        }
     }
 }
