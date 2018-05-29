@@ -1,7 +1,8 @@
 package com.example.weiliu.nfn.view;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.text.InputType;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
@@ -23,9 +24,9 @@ public class AddTaskActivity extends AppCompatActivity implements AddTaskView {
     }
 
     private void initView() {
-
         etTitle = findViewById(R.id.add_task_title);
         etPoint = findViewById(R.id.add_task_point);
+        etPoint.setInputType(InputType.TYPE_CLASS_NUMBER);
 
         findViewById(R.id.add_task_done).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -43,6 +44,6 @@ public class AddTaskActivity extends AppCompatActivity implements AddTaskView {
 
     @Override
     public TaskBean getTask() {
-        return null;
+        return new TaskBean(etTitle.getText().toString(), Integer.getInteger(etPoint.getText().toString()));
     }
 }
