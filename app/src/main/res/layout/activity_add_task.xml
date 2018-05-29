@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:gravity="center_horizontal"
+    android:orientation="vertical"
     tools:context="com.example.weiliu.nfn.view.AddTaskActivity">
 
     <EditText
@@ -13,26 +13,25 @@
         android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="80dp"
-        android:textColor="@color/text_black"
         android:hint="标题"
-         />
+        android:textColor="@color/text_black" />
 
     <EditText
         android:id="@+id/add_task_point"
         android:layout_width="200dp"
-        android:layout_marginTop="40dp"
         android:layout_height="wrap_content"
-        android:textColor="@color/text_black"
-        android:hint="点数" />
+        android:layout_marginTop="40dp"
+        android:hint="点数"
+        android:textColor="@color/text_black" />
 
     <TextView
         android:id="@+id/add_task_done"
         android:layout_width="200dp"
         android:layout_height="40dp"
-        android:text="@string/done"
-        android:textSize="16dp"
-        android:gravity="center"
-        android:textColor="@color/colorPrimaryText"
         android:layout_marginTop="40dp"
-        android:background="@color/colorPrimary" />
+        android:background="@color/colorPrimary"
+        android:gravity="center"
+        android:text="@string/done"
+        android:textColor="@color/colorPrimaryText"
+        android:textSize="16dp" />
 </LinearLayout>
