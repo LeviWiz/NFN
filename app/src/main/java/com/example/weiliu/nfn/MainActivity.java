@@ -1,5 +1,6 @@
 package com.example.weiliu.nfn;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -13,6 +14,7 @@ import android.widget.Toast;
 import com.example.weiliu.nfn.fragment.MineFragment;
 import com.example.weiliu.nfn.fragment.RewardsFragment;
 import com.example.weiliu.nfn.fragment.TaskFragment;
+import com.example.weiliu.nfn.view.AddTaskActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -46,9 +48,21 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.toolbar_menu).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(MainActivity.this, "11111111", Toast.LENGTH_SHORT).show();
+                if (currentFragment==null||currentFragment instanceof TaskFragment) {
+                    toAddTaskActivity();
+                } else if (currentFragment instanceof RewardsFragment){
+                    toAddRewardsActivity();
+                }
             }
         });
+    }
+
+    private void toAddTaskActivity() {
+        startActivity(new Intent(this, AddTaskActivity.class));
+    }
+
+    private void toAddRewardsActivity() {
+
     }
 
     private void initBottomNavigationView() {
