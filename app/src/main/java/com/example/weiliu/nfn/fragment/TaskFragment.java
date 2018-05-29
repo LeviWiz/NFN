@@ -4,6 +4,7 @@ package com.example.weiliu.nfn.fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -50,7 +51,7 @@ public class TaskFragment extends Fragment implements TaskView{
         TaskAdapter adapter = new TaskAdapter(getContext(),list);
 
         taskRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-
+        taskRecyclerView.addItemDecoration(new DividerItemDecoration(getContext(),DividerItemDecoration.VERTICAL));
         taskRecyclerView.setAdapter(adapter);
     }
 }
