@@ -7,6 +7,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Toast;
 
 import com.example.weiliu.nfn.fragment.MineFragment;
@@ -29,13 +30,25 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        initView();
         initBottomNavigationView();
+        initView();
 
         fragments = new ArrayList<Fragment>(3);
         fragments.add(new TaskFragment());
         fragments.add(new RewardsFragment());
         fragments.add(new MineFragment());
         switchFragment(0);
+    }
+
+    private void initView() {
+
+        findViewById(R.id.toolbar_menu).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(MainActivity.this, "11111111", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     private void initBottomNavigationView() {
@@ -45,6 +58,7 @@ public class MainActivity extends AppCompatActivity {
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
+
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {

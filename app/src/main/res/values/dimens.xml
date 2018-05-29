@@ -7,9 +7,10 @@
     <dimen name="list_padding">25dp</dimen>
     <dimen name="list_text_size">15dp</dimen>
     <dimen name="list_text_margin_l">20dp</dimen>
-
+    <!--toolbar-->
+    <dimen name="toolbar_height">60dp</dimen>
+    <dimen name="toolbar_text_size">20dp</dimen>
+    <dimen name="toolbar_text_margin_left">20dp</dimen>
     <dimen name="toolbar_menu_width_height">20dp</dimen>
     <dimen name="toolbar_menu_margin_right">20dp</dimen>
-
-
 </resources>
