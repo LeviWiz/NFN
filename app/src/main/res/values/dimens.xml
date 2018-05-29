@@ -4,7 +4,7 @@
     <dimen name="activity_vertical_margin">16dp</dimen>
     <!--list-->
     <dimen name="list_check_width_height">20dp</dimen>
-    <dimen name="list_padding">15dp</dimen>
+    <dimen name="list_padding">25dp</dimen>
     <dimen name="list_text_size">15dp</dimen>
     <dimen name="list_text_margin_l">20dp</dimen>
 </resources>
