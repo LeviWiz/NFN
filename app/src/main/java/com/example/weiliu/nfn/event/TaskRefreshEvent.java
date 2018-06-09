@@ -5,11 +5,11 @@ package com.example.weiliu.nfn.event;
  * on 2018/6/9.
  */
 
-public class AddRefreshEvent {
+public class TaskRefreshEvent {
 
     public boolean addSuccess;
 
-    public AddRefreshEvent(boolean addSuccess) {
+    public TaskRefreshEvent(boolean addSuccess) {
         this.addSuccess = addSuccess;
     }
 }
