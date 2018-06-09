@@ -7,14 +7,13 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.weiliu.nfn.R;
 import com.example.weiliu.nfn.adapter.TaskAdapter;
-import com.example.weiliu.nfn.event.AddRefreshEvent;
+import com.example.weiliu.nfn.event.TaskRefreshEvent;
 import com.example.weiliu.nfn.presenter.TaskPresenter;
 import com.example.weiliu.nfn.view.TaskView;
 
@@ -74,7 +73,7 @@ public class TaskFragment extends Fragment implements TaskView {
     }
 
     @Subscribe
-    public void onMessageReceived(AddRefreshEvent event){
+    public void onMessageReceived(TaskRefreshEvent event){
         adapter.setTaskList(taskPresenter.getTaskList());
         adapter.notifyDataSetChanged();
     }
