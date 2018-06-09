@@ -1,14 +1,20 @@
 package com.example.weiliu.nfn.model;
 
 import android.util.Log;
+import android.view.View;
 
+import com.example.weiliu.nfn.DBHelper;
+import com.example.weiliu.nfn.R;
 import com.example.weiliu.nfn.bean.TaskBean;
+
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by wei.liu on 2018/5/28.
+ *
  */
 
 public class TaskModelImpl implements TaskModel {
@@ -18,16 +24,7 @@ public class TaskModelImpl implements TaskModel {
     @Override
     public List getTaskList() {
 
-        Log.e(TAG, "getTaskList: 11111");
-        List taskList= new ArrayList<TaskBean>();
-
-        taskList.add(new TaskBean("吃饭",1));
-        taskList.add(new TaskBean("吃肉",2));
-        taskList.add(new TaskBean("喝水",3));
-        taskList.add(new TaskBean("上班",1));
-        taskList.add(new TaskBean("看书",4));
-        taskList.add(new TaskBean("走路",2));
-
+        List<TaskBean> taskList= DBHelper.getSession().getTaskBeanDao().queryBuilder().build().list();
         return taskList;
 
     }

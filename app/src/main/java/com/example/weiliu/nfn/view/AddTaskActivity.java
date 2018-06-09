@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.weiliu.nfn.MyApplication;
 import com.example.weiliu.nfn.R;
 import com.example.weiliu.nfn.bean.TaskBean;
 import com.example.weiliu.nfn.presenter.AddTaskPresenter;
@@ -38,12 +39,13 @@ public class AddTaskActivity extends AppCompatActivity implements AddTaskView {
             @Override
             public void onClick(View v) {
                 if (TextUtils.isEmpty(etTitle.getText())) {
-                    Toast.makeText(AddTaskActivity.this, "请输入标题!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MyApplication.getContext(), "请输入标题!", Toast.LENGTH_SHORT).show();
                 } else if (TextUtils.isEmpty(etPoint.getText())) {
-                    Toast.makeText(AddTaskActivity.this, "请输入点数!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MyApplication.getContext(), "请输入点数!", Toast.LENGTH_SHORT).show();
                 } else {
                     presenter = new AddTaskPresenter(AddTaskActivity.this,AddTaskActivity.this);
                     presenter.saveTaskBean();
+                    finish();
                 }
             }
         });

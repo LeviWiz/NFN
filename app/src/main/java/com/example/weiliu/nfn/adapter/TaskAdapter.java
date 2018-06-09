@@ -14,7 +14,6 @@ import java.util.List;
 
 /**
  * Created by wei.liu on 2018/5/28.
- *
  */
 
 public class TaskAdapter extends RecyclerView.Adapter {
@@ -22,9 +21,15 @@ public class TaskAdapter extends RecyclerView.Adapter {
     private List<TaskBean> taskList;
     private Context context;
 
-    public TaskAdapter(Context context, List taskList) {
+    public TaskAdapter(Context context) {
         this.context = context;
-        this.taskList = taskList;
+    }
+
+    public void setTaskList(List list) {
+        if (taskList != null) {
+            taskList.clear();
+        }
+        taskList = list;
     }
 
     @Override

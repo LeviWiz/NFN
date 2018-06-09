@@ -32,7 +32,13 @@ public class TaskPresenter {
         taskModel = new TaskModelImpl();
     }
 
-    public void loadTaskList() {
+    public List getTaskList() {
+        Log.e(TAG, "loadTaskList: " );
+        //我们可以看到P中的所有方法，都是通过V或M的接口来操作M或V。
+        return taskModel.getTaskList();
+    }
+
+    public void showTaskList() {
 
         Log.e(TAG, "loadTaskList: " );
         //我们可以看到P中的所有方法，都是通过V或M的接口来操作M或V。
